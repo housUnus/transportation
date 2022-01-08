@@ -1,0 +1,16 @@
+{% with dynamic_app_url=request.resolver_match.app_name|add:":"|add:"create" %}
+    <a href="{% url dynamic_app_url %}">Create</a>
+{% endwith %}
+{% with dynamic_app_url=request.resolver_match.app_name|add:":"|add:"list" %}
+    <a href="{% url dynamic_app_url %}">Home</a>
+{% endwith %}
+{% if request.user.is_authenticated%}
+<a href="{% url 'users:logout' %}">logout</a>
+{%else%}
+{%if not request.resolver_match.url_name == "login" %}
+<a href="{% url 'users:login' %}">Login</a>
+{% endif %}
+{%if not request.resolver_match.url_name == "register" %}
+<a href="{% url 'users:register' %}">Register</a>
+{% endif %}
+{% endif %}

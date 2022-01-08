@@ -1,0 +1,146 @@
+{% extends 'skelton.html' %}
+
+{% block title %} Transportation Problem Solver {% endblock %}
+
+
+{% block body %}
+
+{% load crispy_forms_tags %}
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-12 px-2 bg-success">
+			<h1 class="text-center py-3 text-white m-0">Transportation Problem Solver</h1>
+			<h6 class="text-center py-3 text-white m-0">@AIT ALI EL HOSAYN | @ADIDAR MOHAMED | @KHLIFI
+				TAGHZOUTI
+				HAITAM</h6>
+		</div>
+	</div>
+
+
+</div>
+
+<div class="container buts mt-5">
+	<div class="row py-2 justify-content-center">
+		<div class="col-md-12 col-lg-10">
+			<div class="row">
+				<div class="col-sm-3 my-2">
+					<button class="btn btn-primary btn-block" id="add-row" style="height:100%">Add Stock</button>
+				</div>
+				<div class="col-sm-3 my-2">
+					<button class="btn btn-danger btn-block" id="remove-row" style="height:100%">Remove Stock</button>
+				</div>
+				<div class="col-sm-3 my-2">
+					<button class="btn btn-primary btn-block" id="add-col" style="height:100%">Add Demande</button>
+				</div>
+				<div class="col-sm-3 my-2">
+					<button class="btn btn-danger btn-block" id="remove-col" style="height:100%">Remove Demande</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container">
+	<div class="row clearfix mt-1 justify-content-start">
+		<div class="col">
+			<table class="table table-bordered table-hover table-sortable table-sm" id="table">
+				<thead>
+					<tr class="bg-weired text-white">
+						<th class="text-center text-responsive"></th>
+						<th class="text-center b text-responsive"> D1 </th>
+						<th class="text-center b text-responsive"> D2 </th>
+						<th class="text-center text-responsive"> STOCK </th>
+					</tr>
+				</thead>
+				<tbody>
+
+					<tr id='addr0' data-id="0" class="hidden rowx val">
+						<td data-name="name" class="text-center font-weight-bold text-responsive">
+							S1
+						</td>
+						<td data-name="name" class='coly val'>
+							<input type="number" name='name0' placeholder='0.0' class="form-control" value="0" />
+						</td>
+						<td data-name="name" class='coly val'>
+							<input type="number" name='name0' placeholder='0.0' class="form-control" value="0" />
+						</td>
+						<td data-name="name" class='coly'>
+							<input type="number" name='name0' placeholder='0.0' class="form-control" value="0" />
+						</td>
+
+					</tr>
+					<tr id='addr0' data-id="0" class="hidden rowx val">
+						<td data-name="name" class="text-center font-weight-bold text-responsive">
+							S2
+						</td>
+						<td data-name="name" class='coly val'>
+							<input type="number" name='name0' placeholder='0.0' class="form-control" value="0" />
+						</td>
+						<td data-name="name" class='coly val'>
+							<input type="number" name='name0' placeholder='0.0' class="form-control" value="0" />
+						</td>
+						<td data-name="name" class='coly'>
+							<input type="number" name='name0' placeholder='0.0' class="form-control" value="0" />
+						</td>
+					</tr>
+					<tr id='addr0' data-id="0" class="hidden rowx">
+						<td data-name="name" class="font-weight-bold text-center text-responsive">
+							DEMANDE
+						</td>
+						<td data-name="name" class='coly val'>
+							<input type="number" name='name0' placeholder='0.0' class="form-control" value="0" />
+						</td>
+						<td data-name="name" class='coly val'>
+							<input type="number" name='name0' placeholder='0.0' class="form-control" value="0" />
+						</td>
+						<td data-name="name" class='coly'>
+							<input type="number" name='name0' value="0" class="form-control invisible" disabled />
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col my-2 p-0">
+			<select class="form-select form-select-lg btn-block mb-4" aria-label="Default select example" id="methods">
+				<option value="1" selected>NorthWest Corner Method</option>
+				<option value="2">Least Cost Cell Method</option>
+				<option value="3">Regret maximale Method</option>
+			</select>
+			<button id="btn" class="btn btn-success tex-white btn-block"
+				data-url="{% url 'solver:solve' %}">Solve</button>
+		</div>
+	</div>
+
+</div>
+</div>
+<div class="container my-4">
+	<h3>Results</h3>
+	<div class="row my-4">
+		<table class="table table-bordered" id="results">
+			<thead>
+				<tr>
+					<th>From</th>
+					<th>To</th>
+					<th>Cost</th>
+					<th>Quantity</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="paths">
+					<td>0</td>
+					<td>1</td>
+					<td>2</td>
+					<td>2</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+
+{%endblock%}
+{% block urls%}
+{% include 'urls.html' %}
+{% endblock%}
